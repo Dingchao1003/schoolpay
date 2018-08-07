@@ -79,6 +79,7 @@ public class DruidConfig {
     @Bean
     @ConfigurationProperties(prefix = "com.datasource.druid")
     public DataSource DruidConfig(){
+        logger.info("正在配置数据库链接");
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(dbUrl);
         datasource.setUsername(username);
