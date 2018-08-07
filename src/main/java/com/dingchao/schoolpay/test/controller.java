@@ -32,8 +32,8 @@ public class controller {
     @RequestMapping("/dingchao/test")
     public String test(HttpServletRequest req){
         System.out.println(req.getParameter("dingchao"));
-        Map<String,Object> map=userMapper.info();
-        System.out.println(map);
+//        Map<String,Object> map=userMapper.info();
+//        System.out.println(map);
         return "hello world";
 
     }
