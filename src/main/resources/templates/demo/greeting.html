@@ -1,35 +1,20 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/1.css}" rel="stylesheet"/>
-    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <link th:href="@{/css/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
-    <link th:href="@{/css/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
-    <!--<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>-->
+<head th:include="/common/_head :: head_source">
+    <!--<title>Getting Started: Serving Web Content</title>-->
 </head>
+<script  th:src="@{/js/lib/require/require.js}"  data-main="/js/demo/greeting"></script>
 <body class="pace-done">
     <div id="wrapper">
-        <div th:include="/common/html/_side :: temp_side"></div>
+        <div th:include="/common/_side :: temp_side"></div>
         <div id="page-wrapper" class="gray-bg">
-            <div th:replace="/common/html/_head :: temp_head"></div>
-            <p th:text="'Hello, ' + ${title}" /><br/>
+            <div th:replace="/common/_head :: temp_head"></div>
+            <p th:text="'23, ' + ${title}" /><br/>
         </div>
     </div>
-<script th:src="@{/js/jquery-2.1.1.js}"></script>
-<script th:src="@{/js/jquery-3.1.1.min.js}"></script>
-<script th:src="@{/js/bootstrap.js}"></script>
-<script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/jquery.metisMenu.js}"></script>
-<script th:src="@{/js/jquery.slimscroll.min.js}"></script>
-<script th:src="@{/js/inspinia.js}"></script>
+
 <script>
-    $(function(){
-        alert("page load finish.");
-    });
+
 </script>
 </body>
 </html>
