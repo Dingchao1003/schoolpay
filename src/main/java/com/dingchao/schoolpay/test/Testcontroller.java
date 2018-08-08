@@ -22,7 +22,7 @@ import java.util.Map;
  * \
  */
 @Controller
-public class controller {
+public class Testcontroller {
 
 
     @Autowired
