@@ -1,5 +1,6 @@
 package com.dingchao.schoolpay.shrio.service;
 
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -55,6 +56,7 @@ public class ShiroConfiguration {
         filterMap.put("/login","anon");
         filterMap.put("/greeting","anon");
 
+        //静态资源无需权限访问
         filterMap.put("/js/**","anon");
         filterMap.put("/css/**","anon");
         filterMap.put("/img/**","anon");
@@ -64,7 +66,7 @@ public class ShiroConfiguration {
 
         filterMap.put("/**","authc");
 
-        shiroFilterFactoryBean.setLoginUrl("/greeting");
+        shiroFilterFactoryBean.setLoginUrl("/login2");
 
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
@@ -72,6 +74,19 @@ public class ShiroConfiguration {
 
         return shiroFilterFactoryBean;
     }
+
+
+    /**
+     * 加密方式用户名加盐
+     * @param name
+     * @param pwd
+     * @return
+     */
+    public static String Encryp(String name,String pwd){
+        Object result = new SimpleHash("MD5",pwd,name,1024);
+        return result.toString();
+    }
+
 
 
 }

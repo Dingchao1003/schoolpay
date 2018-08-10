@@ -1,6 +1,7 @@
 package com.dingchao.schoolpay.core.controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.dingchao.schoolpay.shrio.entity.User;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -14,6 +15,25 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class BaseController {
+
+
+    /**
+     * 获取当前登录对象
+     *
+     * @return User:系统定义用户，自定义
+     */
+    protected static User getUser() {
+        Object obj;
+
+        obj = SecurityUtils.getSubject().getPrincipal();
+        if (obj != null) {
+            return (User) obj;
+        }
+
+        return null;
+
+
+    }
 
 
 }

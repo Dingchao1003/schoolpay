@@ -1,13 +1,13 @@
 package com.dingchao.schoolpay.test;
 
-import com.dingchao.schoolpay.shrio.entity.user;
-import com.dingchao.schoolpay.test.implement.UserMapper;
+import com.dingchao.schoolpay.shrio.entity.User;
+import com.dingchao.schoolpay.shrio.persistence.UserMapper;
+import com.dingchao.schoolpay.test.implement.testUserMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.client.support.HttpRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * \* Created with IntelliJ IDEA.
@@ -31,9 +30,10 @@ import java.util.Map;
 public class Testcontroller {
 
 
+
+
     @Autowired
     private UserMapper userMapper;
-
 
 
 
@@ -49,6 +49,18 @@ public class Testcontroller {
 
     @RequestMapping(value = "/greeting")
     public ModelAndView test(ModelAndView mv) {
+        System.out.println("进入页面");
+
+        User user= userMapper.selectByPrimaryKey(1);
+
+        String hashAlgorithmName = "MD5";//加密方式
+        Object crdentials = "123456";//密码原值
+        Object salt = null;//盐值
+        int hashIterations = 1024;//加密1024次
+        Object result = new SimpleHash(hashAlgorithmName,crdentials,salt,hashIterations);
+        System.out.println(result);
+        System.out.println(user);
+//        System.out.println(user);
         mv.setViewName("/demo/greeting");
         mv.addObject("title","欢迎使用Thymeleaf!");
         return mv;
@@ -67,7 +79,7 @@ public class Testcontroller {
             subject.login(token);
 
 
-          user user=  (user) SecurityUtils.getSubject().getPrincipal();
+          User user=  (User) SecurityUtils.getSubject().getPrincipal();
             System.out.println(user);
             return "登陆成功";
 

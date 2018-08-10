@@ -14,7 +14,7 @@ import java.util.Map;
  * \
  */
 @Mapper
-public interface UserMapper {
+public interface testUserMapper {
 
     Map<String,Object> info();
 }

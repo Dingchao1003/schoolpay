@@ -1,6 +1,7 @@
 package com.dingchao.schoolpay.shrio.service;
 
-import com.dingchao.schoolpay.shrio.entity.user;
+import com.dingchao.schoolpay.shrio.entity.User;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -26,14 +27,16 @@ public class ShrioRealm extends AuthorizingRealm {
     private RedisTemplate<String,String> redisTemplate;
 
 
-    //认证，登录
+    //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+       User user= (User) SecurityUtils.getSubject().getPrincipal();
        return null;
 
 
     }
 
+    //认证登陆过程
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken=(UsernamePasswordToken)authenticationToken;
@@ -43,10 +46,10 @@ public class ShrioRealm extends AuthorizingRealm {
         char[] pwd=usernamePasswordToken.getPassword();
         System.out.println(username);
         System.out.println(pwd);
-        user user=null;
+        User user=null;
 
         if(username.equals("dingchao")){
-            user=new user("dingc","1","dc");
+//            user=new User("dingc","1","dc");
         }else {
             throw new AccountException("账号密码不对");
         }
