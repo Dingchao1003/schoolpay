@@ -90,5 +90,10 @@ public class Testcontroller {
         }
 
     }
+    @RequestMapping(value = "/userlogin")
+    public ModelAndView login(ModelAndView mv){
+        mv.setViewName("/demo/login");
+        return  mv;
+    }
 
 }

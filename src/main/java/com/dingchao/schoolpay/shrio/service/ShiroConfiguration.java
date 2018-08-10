@@ -55,6 +55,7 @@ public class ShiroConfiguration {
 
         filterMap.put("/login","anon");
         filterMap.put("/greeting","anon");
+        filterMap.put("/userlogin","anon");
 
         //静态资源无需权限访问
         filterMap.put("/js/**","anon");
