@@ -2,6 +2,8 @@ package com.dingchao.schoolpay.test;
 
 import com.dingchao.schoolpay.shrio.entity.User;
 import com.dingchao.schoolpay.shrio.persistence.UserMapper;
+import com.dingchao.schoolpay.shrio.service.ShiroConfiguration;
+import com.dingchao.schoolpay.shrio.service.ShrioRealm;
 import com.dingchao.schoolpay.test.implement.testUserMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -51,16 +53,12 @@ public class Testcontroller {
     public ModelAndView test(ModelAndView mv) {
         System.out.println("进入页面");
 
-        User user= userMapper.selectByPrimaryKey(1);
-
-        String hashAlgorithmName = "MD5";//加密方式
-        Object crdentials = "123456";//密码原值
-        Object salt = null;//盐值
-        int hashIterations = 1024;//加密1024次
-        Object result = new SimpleHash(hashAlgorithmName,crdentials,salt,hashIterations);
-        System.out.println(result);
-        System.out.println(user);
-//        System.out.println(user);
+        System.out.println(ShiroConfiguration.Encryp("dingchao","123456"));
+        User u=new User();
+        u.setUsername("dingchao");
+        u.setUserpwd("3b083285265e5d2e735f1895dbf0f270");
+        User u2=userMapper.info(u);
+        System.out.println(u2);
         mv.setViewName("/demo/greeting");
         mv.addObject("title","欢迎使用Thymeleaf!");
         return mv;
@@ -73,16 +71,17 @@ public class Testcontroller {
         try {
             // 从SecurityUtils里边创建一个 subject
             Subject subject = SecurityUtils.getSubject();
+
+            String pwd= ShiroConfiguration.Encryp(username,password);
+            System.out.println(pwd);
             // 在认证提交前准备 token（令牌）
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+            UsernamePasswordToken token = new UsernamePasswordToken(username, pwd);
             // 执行认证登陆
             subject.login(token);
 
-
-          User user=  (User) SecurityUtils.getSubject().getPrincipal();
+            User user=  (User) SecurityUtils.getSubject().getPrincipal();
             System.out.println(user);
             return "登陆成功";
-
             //根据权限，指定返回数据
         }catch (Exception e){
             e.printStackTrace();
