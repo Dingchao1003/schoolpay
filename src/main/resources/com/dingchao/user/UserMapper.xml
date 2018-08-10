@@ -57,4 +57,10 @@
     select userid, username, userpwd, orgid, abbr, parentid
     from pla_sys_user
   </select>
+
+  <select id="info" resultMap="BaseResultMap" parameterType="com.dingchao.schoolpay.shrio.entity.User">
+    select userid, username, userpwd, orgid, abbr, parentid
+    from pla_sys_user
+    where username=#{username} and userpwd=#{userpwd}
+  </select>
 </mapper>

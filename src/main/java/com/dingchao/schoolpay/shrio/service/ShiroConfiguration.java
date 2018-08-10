@@ -8,6 +8,7 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -22,14 +23,15 @@ import java.util.Map;
  * \
  */
 @Configuration
+@Service
 public class ShiroConfiguration {
 
 
 
     @Bean("securityManager")
-    public SecurityManager securityManager(){
+    public SecurityManager securityManager(@Qualifier("shrioRealm") ShrioRealm shrioRealm){
         SecurityManager securityManager=new DefaultWebSecurityManager();
-        ((DefaultWebSecurityManager) securityManager).setRealm(new ShrioRealm());
+        ((DefaultWebSecurityManager) securityManager).setRealm(shrioRealm);
         return securityManager;
     }
 
@@ -67,7 +69,7 @@ public class ShiroConfiguration {
 
         filterMap.put("/**","authc");
 
-        shiroFilterFactoryBean.setLoginUrl("/login2");
+        shiroFilterFactoryBean.setLoginUrl("/login");
 
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 

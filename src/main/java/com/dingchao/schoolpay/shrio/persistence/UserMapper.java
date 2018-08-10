@@ -51,4 +51,7 @@ public interface UserMapper extends Serializable {
      * @mbggenerated
      */
     int updateByPrimaryKey(User record);
+
+
+    User info(User user);
 }
