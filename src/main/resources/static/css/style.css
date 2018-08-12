@@ -8554,6 +8554,9 @@ body.md-skin {
 .no-margins{
     margin:0px;
 }
+.no-paddings{
+    padding: 0px;
+}
 .warnningDialog{
     display: none;
     position: fixed;
@@ -8564,3 +8567,44 @@ body.md-skin {
 .alert h4{
     display: inline-block;
 }
+.absolute-center{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+#ajaxLoading{
+    width: 100%;
+    height:100%;
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(73, 72, 73, 0.28);
+    top:0;
+    left:0;
+    display: none;
+}
+.loading-circle{
+    animation: animate-circle 5s ease infinite;
+    -moz-animation: animate-circle 5s ease infinite;
+    -webkit-animation: animate-circle 5s ease infinite;
+    -o-animation: animate-circle 5s ease infinite;
+}
+@keyframes animate-circle {
+    from{transform: rotate(0deg)}
+    to{transform: rotate(360deg)}
+}
+@-moz-keyframes animate-circle {
+    from{transform: rotate(0deg)}
+    to{transform: rotate(360deg)}
+}
+@-webkit-keyframes animate-circle {
+    from{transform: rotate(0deg)}
+    to{transform: rotate(360deg)}
+}
+@-o-keyframes animate-circle {
+    from{transform: rotate(0deg)}
+    to{transform: rotate(360deg)}
+}
+

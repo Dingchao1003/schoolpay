@@ -26,23 +26,20 @@
 <script type="text/javascript">
     function submit() {
         require(['common'],function (common) {
-            $.ajax({
-                type: 'POST',
+            common.ajax({
+                type:"POST",
                 url: '/checklogin',
                 data: {
                     "username":$("input[type='username']").val(),
                     "password":$("input[type='password']").val()
-                },
-                success: function (data)
-                {
-                    if(data == true){
-                        window.location.href = "../index";
-                    }else{
-                        common.warnning("The account with this keycode was not correct !");
-                    }
-                },
-                dataType:"json"
-            });
+                }
+            },function (data) {
+                if(data == true){
+                    window.location.href = "../index";
+                }else{
+                    common.warnning("The account with this keycode was not correct !");
+                }
+            })
         })
     }
 </script>
