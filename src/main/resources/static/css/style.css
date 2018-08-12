@@ -8551,3 +8551,16 @@ body.md-skin {
     margin: 0;
   }
 }
+.no-margins{
+    margin:0px;
+}
+.warnningDialog{
+    display: none;
+    position: fixed;
+    width: 50%;
+    top: 10px;
+    left: 25%;
+}
+.alert h4{
+    display: inline-block;
+}

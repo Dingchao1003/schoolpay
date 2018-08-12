@@ -5,8 +5,8 @@ require.config({
          "bootstrap" : "bootstrap/bootstrap.min",
         "inspinia":"menu/inspinia",
         "menu":"menu/jquery.metisMenu",
-        "slimscroll":"menu/jquery.slimscroll.min"
-
+        "slimscroll":"menu/jquery.slimscroll.min",
+        "common":"common"
     },
     shim:{
         'jquery':{
@@ -24,8 +24,10 @@ require.config({
         },
         'slimscroll':{
             deps:['jquery']
+        },
+        'common':{
+            deps:[]
         }
-
     }
 })
 

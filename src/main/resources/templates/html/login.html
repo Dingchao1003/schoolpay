@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
 <head th:include="/common/_head :: head_source">
 </head>
-<script  th:src="@{/js/lib/require/require.js}"  data-main="/js/demo/greeting"></script>
+<script  th:src="@{/js/lib/require/require.js}"  data-main="/js/index"></script>
 <body>
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
@@ -10,7 +10,7 @@
             <h1 class="logo-name">Login</h1>
         </div>
         <h3 class="m-md">Welcome to SchoolPay</h3>
-        <div class="m-t" role="form">
+        <div class="m-t" id="form">
             <div class="form-group m-b-md">
                 <input type="username" class="form-control" placeholder="username" required="true">
             </div>
@@ -25,23 +25,25 @@
 </div>
 <script type="text/javascript">
     function submit() {
-        console.log($("input[type='username']").val());
-        console.log($("input[type='password']").val());
-        $.ajax({
-            type: 'POST',
-            url: '/checklogin',
-            data: {
-                "username":$("input[type='username']").val(),
-                "password":$("input[type='password']").val()
-            },
-            success: function (data)
-            {
-
-                console.log(data)
-            },
-            dataType:"json"
-        });
-        return false;
+        require(['common'],function (common) {
+            $.ajax({
+                type: 'POST',
+                url: '/checklogin',
+                data: {
+                    "username":$("input[type='username']").val(),
+                    "password":$("input[type='password']").val()
+                },
+                success: function (data)
+                {
+                    if(data == true){
+                        window.location.href = "../index";
+                    }else{
+                        common.warnning("The account with this keycode was not correct !");
+                    }
+                },
+                dataType:"json"
+            });
+        })
     }
 </script>
 </body>

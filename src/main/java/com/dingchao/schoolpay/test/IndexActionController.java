@@ -38,13 +38,11 @@ public class IndexActionController {
     public ModelAndView test(ModelAndView mv) {
         //给用户名加密处理
         //ShiroConfiguration.Encryp("dingchao","123456");
-        User u=new User();
-        u.setUsername("yjq");
-        u.setUserpwd("018c6f96e1bf813648dfe15f66e88cd9");
-        User u2=userMapper.info(u);
+        User user=  (User) SecurityUtils.getSubject().getPrincipal();
 
         mv.setViewName("/html/index");
-        mv.addObject("title","欢迎使用Thymeleaf!");
+        mv.addObject("userId",user.getUserid());
+        mv.addObject("userName",user.getUsername());
         return mv;
     }
 
@@ -63,13 +61,12 @@ public class IndexActionController {
             // 执行认证登陆
             subject.login(token);
 
-            User user=  (User) SecurityUtils.getSubject().getPrincipal();
-            System.out.println(user);
-            return "登陆成功";
+            //User user=  (User) SecurityUtils.getSubject().getPrincipal();
+            return "true";
             //根据权限，指定返回数据
         }catch (Exception e){
             e.printStackTrace();
-            return "登陆失败";
+            return "false";
         }
 
     }

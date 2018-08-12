@@ -70,7 +70,7 @@ public class ShiroConfiguration {
 
         filterMap.put("/**","authc");
 
-        shiroFilterFactoryBean.setLoginUrl("/index");
+        shiroFilterFactoryBean.setLoginUrl("/login");
 
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
