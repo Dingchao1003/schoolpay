@@ -29,44 +29,28 @@ import javax.servlet.http.HttpServletRequest;
  * \
  */
 @Controller
-public class Testcontroller {
-
-
-
+public class IndexActionController {
 
     @Autowired
     private UserMapper userMapper;
 
-
-
-    @ResponseBody
-    @RequestMapping("/dingchao/test")
-    public String test(HttpServletRequest req){
-        System.out.println(req.getParameter("dingchao"));
-//        Map<String,Object> map=userMapper.info();
-//        System.out.println(map);
-        return "hello world";
-
-    }
-
-    @RequestMapping(value = "/greeting")
+    @RequestMapping(value = "/index")
     public ModelAndView test(ModelAndView mv) {
-        System.out.println("进入页面");
-
-        System.out.println(ShiroConfiguration.Encryp("dingchao","123456"));
+        //给用户名加密处理
+        //ShiroConfiguration.Encryp("dingchao","123456");
         User u=new User();
-        u.setUsername("dingchao");
-        u.setUserpwd("3b083285265e5d2e735f1895dbf0f270");
+        u.setUsername("yjq");
+        u.setUserpwd("018c6f96e1bf813648dfe15f66e88cd9");
         User u2=userMapper.info(u);
-        System.out.println(u2);
-        mv.setViewName("/demo/greeting");
+
+        mv.setViewName("/html/index");
         mv.addObject("title","欢迎使用Thymeleaf!");
         return mv;
     }
 
 
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/checklogin", method = RequestMethod.POST)
     public String login(String username, String password) {
         try {
             // 从SecurityUtils里边创建一个 subject
@@ -89,9 +73,9 @@ public class Testcontroller {
         }
 
     }
-    @RequestMapping(value = "/userlogin")
+    @RequestMapping(value = "/login")
     public ModelAndView login(ModelAndView mv){
-        mv.setViewName("/demo/login");
+        mv.setViewName("/html/login");
         return  mv;
     }
 

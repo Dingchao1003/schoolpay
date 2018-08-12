@@ -55,9 +55,10 @@ public class ShiroConfiguration {
         //退出过滤器
         filterMap.put("/logout","logout");
 
+
+        filterMap.put("/index","anon");
         filterMap.put("/login","anon");
-        filterMap.put("/greeting","anon");
-        filterMap.put("/userlogin","anon");
+        filterMap.put("/checklogin","anon");
 
         //静态资源无需权限访问
         filterMap.put("/js/**","anon");
@@ -69,7 +70,7 @@ public class ShiroConfiguration {
 
         filterMap.put("/**","authc");
 
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/index");
 
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 

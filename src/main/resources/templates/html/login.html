@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head th:include="/common/_head :: head_source">
+</head>
+<script  th:src="@{/js/lib/require/require.js}"  data-main="/js/demo/greeting"></script>
+<body>
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+        <div>
+            <h1 class="logo-name">Login</h1>
+        </div>
+        <h3 class="m-md">Welcome to SchoolPay</h3>
+        <div class="m-t" role="form">
+            <div class="form-group m-b-md">
+                <input type="username" class="form-control" placeholder="username" required="true">
+            </div>
+            <div class="form-group m-b-md">
+                <input type="password" class="form-control" placeholder="password" required="true">
+            </div>
+            <button type="" onclick="submit()" class="btn btn-primary block full-width m-b-md">Login</button>
+            <a class="btn btn-sm btn-white btn-block">Create an account</a>
+        </div>
+        <p class="m-t"> <small>Copyright © Three Brothers Of SchoolPay All Rights Reserved</small> </p>
+    </div>
+</div>
+<script type="text/javascript">
+    function submit() {
+        console.log($("input[type='username']").val());
+        console.log($("input[type='password']").val());
+        $.ajax({
+            type: 'POST',
+            url: '/checklogin',
+            data: {
+                "username":$("input[type='username']").val(),
+                "password":$("input[type='password']").val()
+            },
+            success: function (data)
+            {
+
+                console.log(data)
+            },
+            dataType:"json"
+        });
+        return false;
+    }
+</script>
+</body>
+</html>

@@ -4681,17 +4681,17 @@ body.mini-navbar.fixed-sidebar .logo-element {
 }
 /* ERROR & LOGIN & LOCKSCREEN*/
 .middle-box {
-  max-width: 400px;
+  /*max-width: 400px;*/
   z-index: 100;
   margin: 0 auto;
-  padding-top: 40px;
+  padding-top: 70px;
 }
 .lockscreen.middle-box {
   width: 200px;
   padding-top: 110px;
 }
 .loginscreen.middle-box {
-  width: 300px;
+  width: 450px;
 }
 .loginColumns {
   max-width: 800px;
