@@ -8607,4 +8607,21 @@ body.md-skin {
     from{transform: rotate(0deg)}
     to{transform: rotate(360deg)}
 }
+#ajaxDialog{
+    width: 80%;
+    height: auto;
+    max-height: 80%;
+}
+#ajaxDialog .modal-dialog{
+    width: 100%;
+}
+#ajaxDialog .modal-content{
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+#ajaxDialog  iframe{
+    width: 100%;
+    min-height: 600px;
+}
 
